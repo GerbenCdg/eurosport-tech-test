@@ -1,6 +1,7 @@
 package com.gmail.gerbencdg.eurosporttechtest.newsfeed
 
 import androidx.lifecycle.ViewModel
+import com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedPost
 import com.gmail.gerbencdg.eurosporttechtest.data.source.NewsFeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -9,4 +10,8 @@ import javax.inject.Inject
 class NewsFeedViewModel @Inject constructor(
     private val newsFeedRepository : NewsFeedRepository
 ): ViewModel() {
+
+    fun onPostClick(post: NewsFeedPost) {
+
+    }
 }

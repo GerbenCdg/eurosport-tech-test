@@ -6,6 +6,7 @@ import com.gmail.gerbencdg.eurosporttechtest.data.Result
 
 class DefaultNewsFeedRepository : NewsFeedRepository {
 
+
     override fun observePosts(): LiveData<Result<List<Result<NewsFeedPost>>>> {
         TODO("Not yet implemented")
     }

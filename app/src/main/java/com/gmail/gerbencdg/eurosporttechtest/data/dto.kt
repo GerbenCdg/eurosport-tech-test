@@ -1,7 +1,5 @@
 package com.gmail.gerbencdg.eurosporttechtest.data
 
-import com.gmail.gerbencdg.eurosporttechtest.formatHumanReadableDate
-
 data class SportDto(
     val id: Int,
     val name: String
@@ -10,6 +8,9 @@ data class SportDto(
 abstract class NewsFeedPost {
     abstract val id: Int
     abstract val title: String
+    abstract var subtitle: String
+    abstract val sport : SportDto
+    abstract val imageUri : String
 }
 
 class StoryDto(
@@ -19,10 +20,12 @@ class StoryDto(
     val image: String,
     val date: Double,
     val author: String,
-    val sport: SportDto
+    override val sport: SportDto,
 ) : NewsFeedPost() {
 
-
+    override lateinit var subtitle: String
+    override val imageUri: String
+        get() = image
 }
 
 class VideoDto(
@@ -31,8 +34,13 @@ class VideoDto(
     val thumb: String,
     val url: String,
     val date: Double,
-    val sport: SportDto,
+    override val sport: SportDto,
     val views: Int
-) : NewsFeedPost()
+) : NewsFeedPost() {
+
+    override lateinit var subtitle: String
+    override val imageUri: String
+        get() = url
+}
 
 

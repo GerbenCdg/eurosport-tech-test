@@ -13,26 +13,26 @@
             type="com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedPost" />
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.gmail.gerbencdg.eurosporttechtest.newsfeed.NewsFeedViewModel" />
     </data>
 
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/background_default"
-        android:paddingBottom="@dimen/list_item_padding"
-        android:layout_height="wrap_content">
+        android:paddingBottom="@dimen/list_item_padding">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:onClick="@{}"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/list_item_padding"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/list_item_padding"
-            android:background="@color/white"
             app:cardBackgroundColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:onClick="@{() -> viewModel.onPostClick(post)}"
                 android:layout_height="wrap_content">
+
 
                 <ImageView
                     android:id="@+id/post_image"
@@ -50,7 +52,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription"
+                    app:imageUri="@{post.imageUri}"
                     tools:src="@drawable/placeholder_picture_of_day" />
+
+                <ImageView
+                    android:src="@drawable/play"
+                    android:id="@+id/play_image"
+                    android:layout_width="match_parent"
+                    app:playIconVisibility="@{post}"
+                    android:layout_height="48dp"
+                    app:layout_constraintStart_toStartOf="@id/post_image"
+                    app:layout_constraintTop_toTopOf="@id/post_image"
+                    app:layout_constraintBottom_toBottomOf="@id/post_image"
+                    tools:ignore="ContentDescription"/>
 
 
                 <TextView
@@ -64,6 +78,7 @@
                     android:padding="4dp"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
+                    android:text="@{post.sport.name.toUpperCase()}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/post_image"
@@ -91,6 +106,7 @@
                     android:layout_marginEnd="@dimen/news_post_margin"
                     android:paddingTop="4dp"
                     android:paddingBottom="@dimen/margin_default"
+                    android:text="@{post.subtitle}"
                     android:textColor="@color/light_grey"
                     android:textSize="11sp"
                     app:layout_constraintTop_toBottomOf="@+id/title_text"

@@ -27,7 +27,7 @@ ListAdapter<NewsFeedPost, ViewHolder>(TaskDiffCallback()){
 
         fun bind(viewModel: NewsFeedViewModel, item: NewsFeedPost) {
 
-            binding.viewmodel = viewModel
+            binding.viewModel = viewModel
             binding.post = item
             binding.executePendingBindings()
         }

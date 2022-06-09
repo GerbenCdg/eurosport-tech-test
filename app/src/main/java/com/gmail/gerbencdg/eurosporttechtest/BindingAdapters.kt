@@ -1,8 +1,11 @@
 package com.gmail.gerbencdg.eurosporttechtest
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedPost
+import com.gmail.gerbencdg.eurosporttechtest.data.VideoDto
 
 @BindingAdapter("imageUri")
 fun bindImage(imageView: ImageView, url: String, contentDescription: String) {
@@ -13,4 +16,14 @@ fun bindImage(imageView: ImageView, url: String, contentDescription: String) {
         .into(imageView)
 
     imageView.contentDescription = contentDescription
+}
+
+@BindingAdapter("playIconVisibility")
+fun bindPlayIconImageVisibility(imageView: ImageView, post: NewsFeedPost) {
+
+    if (post is VideoDto) {
+        imageView.visibility = View.VISIBLE
+    } else {
+        imageView.visibility = View.GONE
+    }
 }

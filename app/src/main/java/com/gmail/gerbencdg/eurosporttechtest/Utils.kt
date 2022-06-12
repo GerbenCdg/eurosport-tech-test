@@ -2,6 +2,8 @@ package com.gmail.gerbencdg.eurosporttechtest
 
 import android.content.Context
 import android.os.Build
+import android.view.View
+import com.google.android.material.snackbar.Snackbar
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -12,6 +14,9 @@ fun formatHumanReadableDate(date: Double, context: Context) : String {
 //    val now = Calendar.getInstance().time.time.toDouble()
 //    val elapsed = now - date
 //
+
+
+
     val dateFormat = SimpleDateFormat.getDateTimeInstance(
         DateFormat.DEFAULT,
         DateFormat.DEFAULT,
@@ -29,5 +34,11 @@ fun getCurrentLocale(context: Context): Locale {
         context.resources.configuration.locales[0]
     } else {
         context.resources.configuration.locale
+    }
+}
+
+fun View.showSnackbar(snackbarText: String, timeLength: Int) {
+    Snackbar.make(this, snackbarText, timeLength).run {
+        show()
     }
 }

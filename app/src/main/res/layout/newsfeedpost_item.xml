@@ -10,7 +10,7 @@
 
         <variable
             name="post"
-            type="com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedPost" />
+            type="com.gmail.gerbencdg.eurosporttechtest.domain.NewsFeedPost" />
 
         <variable
             name="viewModel"
@@ -83,6 +83,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/post_image"
                     app:layout_constraintVertical_bias="1.0"
+                    android:textSize="13sp"
                     tools:text="FOOTBALL" />
 
                 <TextView
@@ -91,6 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/news_post_margin"
+                    android:textStyle="bold"
                     android:layout_marginEnd="@dimen/news_post_margin"
                     android:paddingTop="8dp"
                     android:text="@{post.title}"

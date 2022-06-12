@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedPost
 import com.gmail.gerbencdg.eurosporttechtest.databinding.NewsfeedpostItemBinding
+import com.gmail.gerbencdg.eurosporttechtest.domain.NewsFeedPost
 import com.gmail.gerbencdg.eurosporttechtest.newsfeed.NewsFeedAdapter.ViewHolder
 
 class NewsFeedAdapter(private val viewModel: NewsFeedViewModel) :
@@ -14,7 +14,6 @@ ListAdapter<NewsFeedPost, ViewHolder>(TaskDiffCallback()){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-
         holder.bind(viewModel, item)
     }
 
@@ -26,7 +25,6 @@ ListAdapter<NewsFeedPost, ViewHolder>(TaskDiffCallback()){
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(viewModel: NewsFeedViewModel, item: NewsFeedPost) {
-
             binding.viewModel = viewModel
             binding.post = item
             binding.executePendingBindings()

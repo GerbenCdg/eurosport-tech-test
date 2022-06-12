@@ -72,6 +72,17 @@ dependencies {
     // Glide
     implementation "com.github.bumptech.glide:glide:4.10.0"
 
+    // Moshi for parsing JSON
+    implementation "com.squareup.moshi:moshi:1.8.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+
+    // Retrofit for network requests
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.5.0"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+    // Joda time for dealing with dates
+    implementation "joda-time:joda-time:2.10"
 
     // Testing
     testImplementation 'junit:junit:4.13.2'

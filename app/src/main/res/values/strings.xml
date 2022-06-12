@@ -6,4 +6,10 @@
     <string name="story_fragment">STORY</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="error_loading_posts">Error while loading posts</string>
+    <string name="newsfeed_story_subtitle">By %1$s – %2$s ago</string>
+    <string name="newsfeed_video_subtitle">%d views</string>
+    <string name="by_x">By %s</string>
+    <string name="x_ago">%s ago</string>
+
 </resources>

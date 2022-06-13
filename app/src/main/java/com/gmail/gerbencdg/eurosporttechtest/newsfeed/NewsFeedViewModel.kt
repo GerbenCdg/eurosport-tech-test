@@ -40,6 +40,11 @@ class NewsFeedViewModel @Inject constructor(
     val snackbarText : LiveData<Event<String>>
     get() = _snackbarText
 
+    private val _navigate = MutableLiveData<Event<NewsFeedPost>>()
+
+    val navigate : LiveData<Event<NewsFeedPost>>
+    get() = _navigate
+
 
     init {
         viewModelScope.launch {
@@ -48,7 +53,7 @@ class NewsFeedViewModel @Inject constructor(
     }
 
     fun onPostClick(post: NewsFeedPost) {
-
+        _navigate.postValue(Event(post))
     }
 
     private fun filterPosts(postsResult: Result<List<NewsFeedPost>>): LiveData<List<NewsFeedPost>> {

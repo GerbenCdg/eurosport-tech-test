@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.navigation.fragment.findNavController
 import com.gmail.gerbencdg.eurosporttechtest.databinding.FragmentNewsfeedBinding
+import com.gmail.gerbencdg.eurosporttechtest.domain.StoryPost
+import com.gmail.gerbencdg.eurosporttechtest.domain.VideoPost
 import com.gmail.gerbencdg.eurosporttechtest.showSnackbar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +32,17 @@ class NewsFeedFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.newsfeedRecycler.adapter = NewsFeedAdapter(viewModel)
+
+        viewModel.navigate.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                when (it) {
+                    is VideoPost -> findNavController()
+                        .navigate(NewsFeedFragmentDirections.actionNewsFeedFragmentToVideoPlayerFragment(it))
+                    is StoryPost -> findNavController()
+                        .navigate(NewsFeedFragmentDirections.actionNewsFeedFragmentToStoryFragment(it))
+                }
+            }
+        }
 
         return binding.root
     }

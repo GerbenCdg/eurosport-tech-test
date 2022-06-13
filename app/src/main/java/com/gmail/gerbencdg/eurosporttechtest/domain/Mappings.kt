@@ -2,6 +2,7 @@ package com.gmail.gerbencdg.eurosporttechtest.domain
 
 import android.content.Context
 import com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedDto
+import com.gmail.gerbencdg.eurosporttechtest.data.SportDto
 import com.gmail.gerbencdg.eurosporttechtest.data.StoryPostDto
 import com.gmail.gerbencdg.eurosporttechtest.data.VideoPostDto
 import org.joda.time.DateTime
@@ -48,3 +49,8 @@ fun NewsFeedDto.toModel(context: Context) : List<NewsFeedPost> {
 
     return newsFeed
 }
+
+fun SportDto.toModel(): Sport {
+    return Sport(this.id, this.name)
+}
+

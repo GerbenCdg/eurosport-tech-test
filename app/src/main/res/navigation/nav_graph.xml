@@ -10,12 +10,28 @@
         android:name="com.gmail.gerbencdg.eurosporttechtest.newsfeed.NewsFeedFragment"
         android:label="@string/newsfeed_fragment"
         tools:layout="@layout/fragment_newsfeed">
+        <action
+            android:id="@+id/action_NewsFeedFragment_to_StoryFragment"
+            app:destination="@id/StoryFragment" />
+        <action
+            android:id="@+id/action_NewsFeedFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
     </fragment>
     <fragment
         android:id="@+id/StoryFragment"
         android:name="com.gmail.gerbencdg.eurosporttechtest.story.StoryFragment"
         android:label="@string/story_fragment"
         tools:layout="@layout/fragment_story">
-
+        <argument
+            android:name="selectedStory"
+            app:argType="com.gmail.gerbencdg.eurosporttechtest.domain.StoryPost" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="com.gmail.gerbencdg.eurosporttechtest.videoplayer.VideoPlayerFragment"
+        android:label="@string/fragment_video_player" >
+        <argument
+            android:name="selectedVideo"
+            app:argType="com.gmail.gerbencdg.eurosporttechtest.domain.VideoPost" />
     </fragment>
 </navigation>

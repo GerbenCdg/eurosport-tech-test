@@ -30,9 +30,9 @@ class NewsFeedRepository @Inject constructor(
 
             val newsFeedDto = newsFeedApi.getNewsFeed()
             val newsFeedPosts = newsFeedDto.toModel(context)
-                .sortedByDescending { it.date };
+                .sortedByDescending { it.date }
 
-            _posts.postValue(Result.Success(newsFeedPosts));
+            _posts.postValue(Result.Success(newsFeedPosts))
         } catch (e: Exception) {
             _posts.postValue(Result.Error(e))
         }

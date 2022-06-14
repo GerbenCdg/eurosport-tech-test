@@ -1,7 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:id="@+id/fragment_story"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="story"
+            type="com.gmail.gerbencdg.eurosporttechtest.domain.StoryPost" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            app:imageUri="@{story.imageUri}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/placeholder_picture_of_day" />
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            app:navigationIcon="@drawable/back"
+            android:layout_height="@dimen/appbar_height"
+            android:background="#00FFFFFF"
+            app:popupTheme="@style/Theme.EurosportTechTest.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <TextView
+            android:id="@+id/sport_text"
+            style="@style/NewsPostSportChip"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:text="@{story.sport.name.toUpperCase()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/post_image"
+            tools:text="FOOTBALL" />
+
+        <TextView
+            android:id="@+id/headline_text"
+            style="@style/NewsPostHeadline"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:text="@{story.title}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sport_text"
+            tools:text="Oxlade-Chamberlain, Hudson-Odoi and Stones regain England places" />
+
+        <TextView
+            android:id="@+id/subtitle_text"
+            style="@style/NewsPostSubtitle"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:paddingBottom="@dimen/spacing_small"
+            android:text="@{story.subtitle}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headline_text"
+            tools:text="By James Gray – 12 min ago" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingStart="@dimen/spacing_large"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingEnd="@dimen/spacing_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle_text">
+
+            <TextView
+                android:id="@+id/story_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{story.teaser}"
+                android:textAppearance="?textAppearanceBody2"
+                tools:text="Toujours confin\u00E9 \u00E0 son domicile, Mourad Boudjellal est un spectateur attentif du monde du rugby. Gr\u00E2ce \u00E0 son \u00E9pouse Linda et sa fille Roselaine, transform\u00E9es en r\u00E9alisatrices, l'ancien pr\u00E9sident du RCT porte son regard sur l'ouverture de la saison des transferts ou sur le salaire de Pollard \u00E0 Montpellier. Le coup de coeur de la semaine, il est quant \u00E0 lui pour S\u00E9bastien Tilllous-Borde..." />
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

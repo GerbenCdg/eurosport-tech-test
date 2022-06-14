@@ -3,4 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.gmail.gerbencdg.eurosporttechtest.MainActivity">
 
+    <item
+        android:id="@+id/menu_item_share"
+        android:icon="@drawable/share"
+        android:title="@string/share"
+        app:showAsAction="always" />
+
 </menu>

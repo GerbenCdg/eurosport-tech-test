@@ -12,9 +12,17 @@
         tools:layout="@layout/fragment_newsfeed">
         <action
             android:id="@+id/action_NewsFeedFragment_to_StoryFragment"
-            app:destination="@id/StoryFragment" />
+            app:destination="@id/StoryFragment"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:enterAnim="@anim/slide_in_right"            />
         <action
             android:id="@+id/action_NewsFeedFragment_to_videoPlayerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:destination="@id/videoPlayerFragment" />
     </fragment>
     <fragment

@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="newsfeed_fragment">FEATURED</string>
+    <string name="featured">featured</string>
     <string name="story_fragment">STORY</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -13,5 +14,6 @@
     <string name="x_ago">%s ago</string>
     <string name="back_to_news_feed">back to news feed</string>
     <string name="fragment_video_player">VideoPlayerFragment</string>
+    <string name="share">share</string>
 
 </resources>

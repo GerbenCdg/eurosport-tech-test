@@ -9,12 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
+import com.gmail.gerbencdg.eurosporttechtest.R
 import com.gmail.gerbencdg.eurosporttechtest.databinding.FragmentNewsfeedBinding
 import com.gmail.gerbencdg.eurosporttechtest.domain.StoryPost
 import com.gmail.gerbencdg.eurosporttechtest.domain.VideoPost
 import com.gmail.gerbencdg.eurosporttechtest.showSnackbar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_newsfeed.*
 
 @AndroidEntryPoint
 class NewsFeedFragment : Fragment() {

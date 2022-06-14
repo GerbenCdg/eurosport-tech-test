@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -22,96 +21,73 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_default"
-        android:paddingBottom="@dimen/list_item_padding">
+        android:paddingBottom="@dimen/spacing_default">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:onClick="@{}"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/list_item_padding"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="@dimen/list_item_padding"
+            android:paddingLeft="@dimen/spacing_small"
+            android:paddingTop="@dimen/spacing_default"
+            android:paddingRight="@dimen/spacing_small"
+            android:paddingBottom="@dimen/spacing_default"
             app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="4dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            card_view:cardCornerRadius="4dp">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:onClick="@{() -> viewModel.onPostClick(post)}"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onPostClick(post)}">
 
 
                 <ImageView
                     android:id="@+id/post_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    style="@style/NewsPostThumbnail"
+                    app:imageUri="@{post.imageUri}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription"
-                    app:imageUri="@{post.imageUri}"
                     tools:src="@drawable/placeholder_picture_of_day" />
 
                 <ImageView
-                    android:src="@drawable/play"
                     android:id="@+id/play_image"
                     android:layout_width="match_parent"
-                    app:playIconVisibility="@{post}"
                     android:layout_height="48dp"
+                    android:src="@drawable/play"
+                    app:layout_constraintBottom_toBottomOf="@id/post_image"
                     app:layout_constraintStart_toStartOf="@id/post_image"
                     app:layout_constraintTop_toTopOf="@id/post_image"
-                    app:layout_constraintBottom_toBottomOf="@id/post_image"
-                    tools:ignore="ContentDescription"/>
+                    app:playIconVisibility="@{post}"
+                    tools:ignore="ContentDescription" />
 
 
                 <TextView
                     android:id="@+id/sport_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/news_post_margin"
-                    android:layout_marginTop="226dp"
-                    android:layout_marginEnd="@dimen/news_post_margin"
-                    android:background="@drawable/rounded_corner"
-                    android:padding="4dp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
+                    style="@style/NewsPostSportChip"
                     android:text="@{post.sport.name.toUpperCase()}"
-                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/post_image"
                     app:layout_constraintVertical_bias="1.0"
-                    android:textSize="13sp"
-                    tools:text="FOOTBALL" />
+                    tools:text="football" />
 
                 <TextView
-                    android:id="@+id/title_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/news_post_margin"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="@dimen/news_post_margin"
-                    android:paddingTop="8dp"
+                    android:id="@+id/headline_text"
+                    style="@style/NewsPostHeadline"
                     android:text="@{post.title}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sport_text"
                     tools:text="Oxlade-Chamberlain, Hudson-Odoi and Stones regain England places" />
 
                 <TextView
                     android:id="@+id/subtitle_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/news_post_margin"
-                    android:layout_marginEnd="@dimen/news_post_margin"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="@dimen/margin_default"
+                    style="@style/NewsPostSubtitle"
                     android:text="@{post.subtitle}"
-                    android:textColor="@color/light_grey"
-                    android:textSize="11sp"
-                    app:layout_constraintTop_toBottomOf="@+id/title_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/headline_text"
                     tools:text="By James Gray – 12 min ago">
 
                 </TextView>

@@ -116,7 +116,6 @@ class VideoPlayerFragment : Fragment() {
         }
     }
 
-
     private fun hideSystemUi() {
         WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
         WindowInsetsControllerCompat(
@@ -127,11 +126,6 @@ class VideoPlayerFragment : Fragment() {
             controller.systemBarsBehavior =
                 WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
-
-        requireActivity().toolbar.visibility = View.GONE
-        requireActivity().nav_host_fragment.layoutParams.apply {
-            (this as ViewGroup.MarginLayoutParams).topMargin = 0
-        }
     }
 
     private fun displaySystemUi() {
@@ -140,15 +134,5 @@ class VideoPlayerFragment : Fragment() {
             requireActivity().window,
             binding.playerView
         ).show(WindowInsetsCompat.Type.systemBars())
-
-
-        val appbarHeight = requireContext().resources
-            .getDimension(R.dimen.appbar_height)
-            .roundToInt()
-
-        requireActivity().toolbar.visibility = View.VISIBLE
-        requireActivity().nav_host_fragment.layoutParams.apply {
-            (this as ViewGroup.MarginLayoutParams).topMargin = appbarHeight
-        }
     }
 }

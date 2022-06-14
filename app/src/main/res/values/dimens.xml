@@ -1,7 +1,9 @@
 <resources>
-    <dimen name="list_item_padding">12dp</dimen>
-    <dimen name="activity_horizontal_margin">8dp</dimen>
-    <dimen name="news_post_margin">10dp</dimen>
-    <dimen name="margin_default">12dp</dimen>
+    <dimen name="recyclerview_item_margin">10dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_default">12dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
     <dimen name="appbar_height">72dp</dimen>
+    <dimen name="news_post_height">240dp</dimen>
+    <dimen name="sport_chip_top_margin">226dp</dimen>
 </resources>

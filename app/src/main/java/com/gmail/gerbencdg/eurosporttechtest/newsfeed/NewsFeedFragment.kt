@@ -59,7 +59,7 @@ class NewsFeedFragment : Fragment() {
     private fun setupSnackbar() {
         viewModel.snackbarText.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                view?.showSnackbar(it, Snackbar.LENGTH_LONG)
+                view?.showSnackbar(requireContext().getString(it), Snackbar.LENGTH_LONG)
             }
         }
     }

@@ -1,12 +1,12 @@
 package com.gmail.gerbencdg.eurosporttechtest.newsfeed
 
-import android.app.Application
+import androidx.annotation.StringRes
 import androidx.lifecycle.*
 import com.gmail.gerbencdg.eurosporttechtest.Event
 import com.gmail.gerbencdg.eurosporttechtest.R
 import com.gmail.gerbencdg.eurosporttechtest.data.Result
 import com.gmail.gerbencdg.eurosporttechtest.data.Result.Success
-import com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedRepository
+import com.gmail.gerbencdg.eurosporttechtest.data.source.INewsFeedRepository
 import com.gmail.gerbencdg.eurosporttechtest.domain.NewsFeedPost
 import com.gmail.gerbencdg.eurosporttechtest.domain.StoryPost
 import com.gmail.gerbencdg.eurosporttechtest.domain.VideoPost
@@ -17,9 +17,8 @@ import kotlin.math.max
 
 @HiltViewModel
 class NewsFeedViewModel @Inject constructor(
-    private val app: Application,
-    private val newsFeedRepository: NewsFeedRepository,
-) : AndroidViewModel(app) {
+    private val newsFeedRepository: INewsFeedRepository,
+) : ViewModel() {
 
     private val _posts: LiveData<List<NewsFeedPost>> =
         newsFeedRepository.postsObservable.switchMap { filterPosts(it) }
@@ -28,7 +27,7 @@ class NewsFeedViewModel @Inject constructor(
         get() = _posts
 
     private val _isDataLoadingError = MutableLiveData<Boolean>()
-    private val isDataLoadingError: LiveData<Boolean>
+    val isDataLoadingError: LiveData<Boolean>
         get() = _isDataLoadingError
 
     private val _isDataLoading = MutableLiveData<Boolean>()
@@ -36,9 +35,9 @@ class NewsFeedViewModel @Inject constructor(
     val isDataLoading: LiveData<Boolean>
         get() = _isDataLoading
 
-    private val _snackbarText = MutableLiveData<Event<String>>()
+    private val _snackbarText = MutableLiveData<Event<Int>>()
 
-    val snackbarText: LiveData<Event<String>>
+    val snackbarText: LiveData<Event<Int>>
         get() = _snackbarText
 
     private val _navigate = MutableLiveData<Event<NewsFeedPost>>()
@@ -48,13 +47,21 @@ class NewsFeedViewModel @Inject constructor(
 
 
     init {
-        viewModelScope.launch {
-            newsFeedRepository.refreshPosts()
-        }
+        refreshPosts()
     }
 
     fun onNewsPostClick(post: NewsFeedPost) {
         _navigate.postValue(Event(post))
+    }
+
+    fun refreshPosts() {
+
+        _isDataLoading.postValue(true)
+
+        viewModelScope.launch {
+            newsFeedRepository.refreshPosts()
+            _isDataLoading.postValue(false)
+        }
     }
 
     private fun filterPosts(postsResult: Result<List<NewsFeedPost>>): LiveData<List<NewsFeedPost>> {
@@ -63,7 +70,6 @@ class NewsFeedViewModel @Inject constructor(
 
         when (postsResult) {
             is Success -> {
-                _isDataLoadingError.postValue(false)
                 viewModelScope.launch {
 
                     val storyPosts = postsResult.data.filterIsInstance<StoryPost>()
@@ -77,24 +83,21 @@ class NewsFeedViewModel @Inject constructor(
                         getViewModelPosts(storyPosts, videoPosts)
 
                     result.postValue(posts)
-
-                    _isDataLoading.postValue(false)
                 }
-            }
-            is Result.Loading -> {
-                _isDataLoadingError.postValue(false)
-                _isDataLoading.postValue(true)
             }
             is Result.Error -> {
                 result.value = emptyList()
-                showSnackbarMessage(app.getString(R.string.error_loading_posts))
+                showSnackbarMessage(R.string.error_loading_posts)
 
-                _isDataLoading.postValue(false)
                 _isDataLoadingError.postValue(true)
             }
         }
 
         return result
+    }
+
+    public fun resetDataLoadingError() {
+        _isDataLoadingError.postValue(false)
     }
 
     /**
@@ -132,7 +135,7 @@ class NewsFeedViewModel @Inject constructor(
         return posts
     }
 
-    private fun showSnackbarMessage(msg: String) {
-        _snackbarText.postValue(Event(msg))
+    private fun showSnackbarMessage(@StringRes resId: Int) {
+        _snackbarText.postValue(Event(resId))
     }
 }

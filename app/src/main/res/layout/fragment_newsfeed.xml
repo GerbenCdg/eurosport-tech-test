@@ -41,6 +41,13 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:onRefreshListener="@{viewModel::refreshPosts}"
+            app:refreshing="@{viewModel.isDataLoading}">
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/newsfeed_recycler"
             android:layout_width="match_parent"
@@ -50,6 +57,8 @@
             app:items="@{viewModel.posts}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/newsfeedpost_item" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 

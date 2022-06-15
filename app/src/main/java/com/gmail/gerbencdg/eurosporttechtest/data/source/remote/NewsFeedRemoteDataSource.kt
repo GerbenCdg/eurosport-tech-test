@@ -17,10 +17,10 @@ class NewsFeedRemoteDataSource @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : NewsFeedDataSource {
 
-    private val _observablePosts = MutableLiveData<Result<List<NewsFeedPost>>>()
+    private val _postsObservable = MutableLiveData<Result<List<NewsFeedPost>>>()
 
     override fun observePosts(): LiveData<Result<List<NewsFeedPost>>> {
-        return _observablePosts
+        return _postsObservable
     }
 
     override suspend fun getPosts(): Result<List<NewsFeedPost>> {
@@ -35,7 +35,7 @@ class NewsFeedRemoteDataSource @Inject constructor(
     }
 
     override suspend fun refreshPosts() {
-        _observablePosts.postValue(getPosts())
+        _postsObservable.postValue(getPosts())
     }
 
     override suspend fun deleteAllPosts() {

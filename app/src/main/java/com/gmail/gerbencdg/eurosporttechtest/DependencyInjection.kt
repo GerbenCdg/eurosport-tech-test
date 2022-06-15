@@ -2,7 +2,9 @@ package com.gmail.gerbencdg.eurosporttechtest
 
 import android.content.Context
 import com.gmail.gerbencdg.eurosporttechtest.api.NewsFeedApiService
+import com.gmail.gerbencdg.eurosporttechtest.data.source.INewsFeedRepository
 import com.gmail.gerbencdg.eurosporttechtest.data.source.NewsFeedDataSource
+import com.gmail.gerbencdg.eurosporttechtest.data.source.NewsFeedRepository
 import com.gmail.gerbencdg.eurosporttechtest.data.source.local.NewsFeedDatabase
 import com.gmail.gerbencdg.eurosporttechtest.data.source.local.NewsFeedLocalDataSource
 import com.gmail.gerbencdg.eurosporttechtest.data.source.remote.NewsFeedRemoteDataSource
@@ -21,7 +23,7 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context) : NewsFeedDatabase {
+    fun provideAppDatabase(@ApplicationContext context: Context): NewsFeedDatabase {
         return NewsFeedDatabase.getInstance(context)
     }
 }
@@ -57,4 +59,13 @@ class DataSourceModule {
         return NewsFeedRemoteDataSource(apiService);
     }
 
+    @Singleton
+    @Provides
+    fun provideNewsFeedRepository(
+        @Named("NewsFeedLocalDataSource") newsFeedLocal: NewsFeedDataSource,
+        @Named("NewsFeedRemoteDataSource") newsFeedRemote: NewsFeedDataSource,
+    ): INewsFeedRepository {
+        return NewsFeedRepository(newsFeedLocal, newsFeedRemote)
+    }
 }
+

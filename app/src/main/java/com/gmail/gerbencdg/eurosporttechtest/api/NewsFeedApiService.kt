@@ -1,7 +1,6 @@
 package com.gmail.gerbencdg.eurosporttechtest.api
 
-import com.gmail.gerbencdg.eurosporttechtest.Constants.NEWSFEED_API_URL
-import com.gmail.gerbencdg.eurosporttechtest.data.NewsFeedDto
+import com.gmail.gerbencdg.eurosporttechtest.app.Constants.NEWSFEED_API_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

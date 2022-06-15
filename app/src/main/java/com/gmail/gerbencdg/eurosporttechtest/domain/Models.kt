@@ -45,26 +45,6 @@ data class VideoPost(
 
 @Parcelize
 data class Sport(
-    val id: Int,
     val name: String
 ) : Parcelable
-
-
-fun storyPostSubtitle(author: String, date: Double, context: Context): String {
-
-    val formattedRelativeDateTime = DateUtils.getRelativeDateTimeString(
-        context,
-        date.roundToLong() * 1000,
-        DateUtils.MINUTE_IN_MILLIS,
-        DateUtils.YEAR_IN_MILLIS,
-        0
-    )
-
-    return context.getString(R.string.newsfeed_story_subtitle, author, formattedRelativeDateTime)
-}
-
-
-fun videoPostSubtitle(views: Int, context: Context): String {
-    return context.getString(R.string.newsfeed_video_subtitle, views)
-}
 
